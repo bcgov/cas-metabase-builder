@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "hello world";
-exit 0;
+git clone --depth 1 https://github.com/bcgov/cas-metabase
+./cas-metabase/bin/build
