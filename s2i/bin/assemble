@@ -1,4 +1,6 @@
 #!/bin/bash
 
 git clone --depth 1 https://github.com/bcgov/cas-metabase
-./cas-metabase/bin/build
+pushd cas-metabase
+./bin/build
+popd
