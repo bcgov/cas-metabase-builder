@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "hello world";
+echo "This image build metabase";
 exit 0;

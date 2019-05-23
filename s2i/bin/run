@@ -1,3 +1,4 @@
 #!/bin/bash
 
-java -jar ./cas-metabase/target/uberjar/metabase.jar
+echo "Don't run with this image, use a runtime image instead";
+exit 0;
