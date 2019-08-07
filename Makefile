@@ -39,7 +39,3 @@ build: $(call make_help,build,Builds the source into an image in the tools proje
 build: OC_PROJECT=$(OC_TOOLS_PROJECT)
 build: whoami
 	$(call oc_build,$(PROJECT_PREFIX)metabase-builder)
-
-.PHONY: install
-install: whoami
-	$(call oc_promote,$(PROJECT_PREFIX)metabase-builder)
