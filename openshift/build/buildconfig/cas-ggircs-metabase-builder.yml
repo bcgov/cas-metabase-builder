@@ -1,19 +1,29 @@
 apiVersion: template.openshift.io/v1
 kind: Template
-objects:
 
+parameters:
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+
+objects:
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
-    name: cas-ggircs-metabase-builder
+    name: ${PREFIX}metabase-builder
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: cas-ggircs-metabase-builder:${GIT_BRANCH_NORM}
+        name: ${PREFIX}metabase-builder:${GIT_SHA1}
     resources:
       limits:
-        cpu: "4"
+        cpu: 1000m
         memory: 8Gi
       requests:
         cpu: 100m
@@ -21,24 +31,15 @@ objects:
     source:
       git:
         ref: ${GIT_BRANCH}
-        uri: https://github.com/bcgov/cas-ggircs-metabase-builder.git
+        uri: https://github.com/bcgov/${PREFIX}metabase-builder.git
     strategy:
       type: Docker
     triggers:
     - type: ConfigChange
     - generic:
-        secret: cas-ggircs-metabase-builder-generic-trigger
+        secret: ${PREFIX}metabase-builder-generic-trigger
       type: Generic
     - github:
-        secret: cas-ggircs-metabase-builder-github-trigger
+        secret: ${PREFIX}metabase-builder-github-trigger
       type: GitHub
 
-parameters:
-- description: Git source code branch currently deployed.
-  displayName: Git branch
-  name: GIT_BRANCH
-  required: true
-- description: Git source code branch currently deployed, where slashes are replaced by dashes, to be able to use it in image tags.
-  displayName: Git branch (normalized)
-  name: GIT_BRANCH_NORM
-  required: true
