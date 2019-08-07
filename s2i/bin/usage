@@ -1,4 +1,0 @@
-#!/bin/bash
-
-echo "This image build metabase";
-exit 0;
