@@ -30,7 +30,7 @@ objects:
         memory: 256Mi
     source:
       git:
-        ref: ${GIT_BRANCH}
+        ref: ${GIT_SHA1}
         uri: https://github.com/bcgov/${PREFIX}metabase-builder.git
     strategy:
       type: Docker
