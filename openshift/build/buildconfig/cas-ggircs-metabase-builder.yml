@@ -17,6 +17,8 @@ objects:
   metadata:
     name: ${PREFIX}metabase-builder
   spec:
+    nodeSelector:
+      beta.kubernetes.io/os: linux
     output:
       to:
         kind: ImageStreamTag
@@ -32,14 +34,10 @@ objects:
       git:
         ref: ${GIT_SHA1}
         uri: https://github.com/bcgov/${PREFIX}metabase-builder.git
+      type: Git
     strategy:
       type: Docker
-    triggers:
-    - type: ConfigChange
-    - generic:
-        secret: ${PREFIX}metabase-builder-generic-trigger
-      type: Generic
-    - github:
-        secret: ${PREFIX}metabase-builder-github-trigger
-      type: GitHub
+    triggers: []
+  status:
+    lastVersion: 0
 

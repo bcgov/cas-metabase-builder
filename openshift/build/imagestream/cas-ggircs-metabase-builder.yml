@@ -16,3 +16,6 @@ objects:
   kind: ImageStream
   metadata:
     name: ${PREFIX}metabase-builder
+  spec:
+    lookupPolicy:
+      local: true
