@@ -21,8 +21,7 @@ objects:
     source:
       git:
         ref: ${GIT_BRANCH}
-        uri: https://github.com/bcgov/cas-ggircs.git
-      contextDir: docker/metabase-builder
+        uri: https://github.com/bcgov/cas-ggircs-metabase-builder.git
     strategy:
       type: Docker
     triggers:
